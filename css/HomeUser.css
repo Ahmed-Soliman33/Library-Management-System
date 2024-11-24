@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  overflow: visible;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  flex-grow: 1;
+  background-color: #f3f3f7;
+  padding: 0px 30px;
+}
+
+.content-title {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.content-title h2 {
+  font-size: 35px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.content-title p {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+.content-books {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.book-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: 190px;
+  gap: 10px;
+  padding: 15px 15px;
+  border-radius: 13px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.book-item img {
+  width: 130px;
+  margin: auto;
+}
+
+.book-item .book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.book-item .book-info h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+.book-item .book-info h4 {
+  font-size: 14px;
+  font-weight: 400;
+}
+.book-item .book-info p {
+  font-size: 12px;
+  font-weight: 400;
+}
+.book-item .book-info p span {
+  color: #959494;
+  font-size: 11px;
+}

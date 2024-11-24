@@ -1,0 +1,86 @@
+.container {
+  background-image: url(../../../images/login_background.png);
+  background-position: center;
+  background-size: cover;
+  padding: 50px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 500px;
+  padding: 30px 25px 100px 25px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.card-logo {
+  width: 150px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 24px;
+  color: #5c5858;
+}
+
+.card-subtitle {
+  font-size: 20px;
+  color: #a0a0a0;
+}
+
+.card-message {
+  color: #5c5858;
+  margin-top: 30px;
+}
+
+.card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  background-color: #4ac156;
+  color: white;
+  border-radius: 50%;
+  margin: 40px auto 70px;
+}
+
+.card-icon i {
+  font-size: 60px;
+}
+
+.card-button {
+  width: 420px;
+  padding: 10px;
+  background-color: #ff7e5f;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 auto 10px;
+  display: block;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.card-button:hover {
+  background-color: #feb47b;
+}

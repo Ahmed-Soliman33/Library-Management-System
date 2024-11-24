@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../../images/logo.png" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <img class="login-logo" src="../../images/logo.png" alt="Logo" />
+        <div class="login-content">
+          <h4 class="login-title">Registration</h4>
+          <p class="login-subtitle">For Both Staff & Students</p>
+        </div>
+        <form id="registerForm" class="form">
+          <label class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-input"
+            placeholder="User or Admin name"
+            required
+          />
+          <label class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            placeholder="username@collegename.ac.in"
+            required
+          />
+          <label class="form-label">Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            class="form-input"
+            required
+          />
+          <label class="form-label">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            class="form-input"
+            required
+          />
+        </form>
+        <div class="role-selection">
+          <input
+            class="role-radio"
+            type="radio"
+            name="role"
+            value="Admin"
+            id="admin"
+          />
+          <label for="admin">Admin</label>
+          <input
+            class="role-radio"
+            type="radio"
+            name="role"
+            value="User"
+            id="user"
+          />
+          <label for="user">User</label>
+        </div>
+        <button class="card-button">Register</button>
+        <div class="footer">
+          <p style="color: #272727" class="footer-text">
+            Already a User?
+            <a class="footer-link" href="../../index.html">Login now</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../../js/Register.js"></script>
+  </body>
+</html>

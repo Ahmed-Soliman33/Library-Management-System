@@ -1,0 +1,131 @@
+/* Favourite Section */
+.container {
+  display: flex;
+}
+.favourite-section {
+  width: 100%;
+  background-color: #f3f3f7;
+}
+.favourite-section-content {
+  padding: 0px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.fav-sec-title {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.fav-sec-title a {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+.fav-sec-title h2 {
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+.fav-sec-items-head {
+  display: grid;
+  grid-template-columns: 2.8fr 1.8fr 2fr 2fr 2fr;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+  gap: 50px;
+}
+
+.fav-sec-items-head p {
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+/* /////// items ////////// */
+
+.fav-item {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 2.7fr 2fr 2fr;
+  gap: 20px;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.fav-i-book {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.fav-i-book img {
+  border-radius: 4px;
+}
+
+.fav-i-book-info h3 {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.fav-i-book-info h4 {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.item-rate,
+.item-category,
+.item-available {
+  font-size: 18px;
+  color: var(--text-color);
+  text-align: center;
+}
+.item-rate span {
+  font-size: 15px;
+  color: #4d4d4d92;
+}
+
+.item-available p {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.item-status {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+}
+
+.item-status-icon svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.item-status button {
+  background-color: transparent;
+  color: #f76b56;
+  border: 1px solid #f76b56;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.item-status button:hover {
+  background-color: #f76b56;
+  color: #fff;
+}
+
+/* End Favourite Section  */

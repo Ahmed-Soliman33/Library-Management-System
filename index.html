@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./images/logo.png" />
+    <title>My Book Shelf Login</title>
+    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./Pages/LoginPages/css/login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <img class="login-logo" src="./images/logo.png" alt="Logo" />
+        <div class="login-content">
+          <h4 class="login-title">Welcome Back!</h4>
+          <p class="login-subtitle">
+            Sign in to continue to your Digital Library
+          </p>
+        </div>
+        <form id="loginForm">
+          <label>Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="username@collegename.ac.in"
+            required
+          />
+          <br />
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            class="input-field"
+            required
+          />
+          <br />
+        </form>
+        <div class="role-selection">
+          <input
+            class="role-radio"
+            type="radio"
+            name="role"
+            value="Admin"
+            id="admin"
+          />
+          <label for="admin">Admin</label>
+          <input
+            class="role-radio"
+            type="radio"
+            name="role"
+            value="User"
+            id="user"
+          />
+          <label for="user">User</label>
+        </div>
+        <button class="login-btn">Start Now</button>
+        <p class="register-link">
+          New User? <a href="./Pages/LoginPages/Register.html">Register Here</a>
+        </p>
+      </div>
+      <!-- login-box -->
+    </div>
+    <!--  login-container -->
+
+    <!-- --------------- JavaScript ------------------ -->
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>
