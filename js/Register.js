@@ -34,7 +34,9 @@ function register() {
     (user) => user.email === email
   );
   if (existingUserIndex !== -1) {
-    storedData[existingUserIndex] = user;
+    // storedData[existingUserIndex] = user;
+    alert("User already exists. Please add a different email.");
+    return;
   } else {
     storedData.push(user);
   }

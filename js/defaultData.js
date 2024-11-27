@@ -14,7 +14,7 @@ export const defaultData = [
   },
   {
     id: 2,
-    title: "Don’t Make Me think",
+    title: "The Design of Every",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,
@@ -27,7 +27,7 @@ export const defaultData = [
   },
   {
     id: 3,
-    title: "Don’t Make Me think",
+    title: "Sprint: how to solve",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,
@@ -40,7 +40,7 @@ export const defaultData = [
   },
   {
     id: 4,
-    title: "Don’t Make Me think",
+    title: "Learn UX",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,
@@ -53,7 +53,7 @@ export const defaultData = [
   },
   {
     id: 5,
-    title: "Don’t Make Me think",
+    title: "The Road to React",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,
@@ -66,7 +66,7 @@ export const defaultData = [
   },
   {
     id: 6,
-    title: "Don’t Make Me think",
+    title: "Rich Dad Poor Dad",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,
@@ -79,7 +79,7 @@ export const defaultData = [
   },
   {
     id: 7,
-    title: "Don’t Make Me think",
+    title: "Harry Potter",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,
@@ -92,7 +92,7 @@ export const defaultData = [
   },
   {
     id: 8,
-    title: "Don’t Make Me think",
+    title: "You Donnot Now JS",
     category: "Computer Science",
     author_date: "Steve Krug, 2000",
     rate: 4.5,

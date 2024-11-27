@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../../images/logo.png" />
+    <link rel="stylesheet" href="../../css/all.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/ProfileUser.css" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <div class="container">
+      <div style="width: 280px" class="sidebar">
+        <a href="./HomeAdmin.html" class="logo"
+          ><img width="100px" src="../../images/logo.png" alt="logo"
+        /></a>
+        <nav class="menu">
+          <ul>
+            <li>
+              <a href="./HomeAdmin.html"
+                ><i class="fa-solid fa-house"></i>Home</a
+              >
+            </li>
+            <li>
+              <a href="./ManageUsers.html"
+                ><i class="fa-solid fa-user-group"></i>Manage Users</a
+              >
+            </li>
+            <li>
+              <a href="./ManageBooks.html" class="shelf-svg">
+                <i class="fa-solid fa-book"></i>
+                Manage Books</a
+              >
+            </li>
+            <li>
+              <a style="color: #4d4d4d" href="./ProfileAdmin.html"
+                ><i class="fa-regular fa-user"></i>Profile</a
+              >
+            </li>
+            <li>
+              <a id="log_out_link" style="cursor: pointer"
+                ><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- sidebar -->
+
+      <div class="sec-container">
+        <header>
+          <div style="all: unset" class="header-search-box"></div>
+          <div class="user-content">
+            <div class="user-div">Admin</div>
+            <a href="./ProfileAdmin.html" id="profile" class="profile">
+              <img src="../../images/user.png" alt="User Image" />
+              <span style="white-space: nowrap" id="profileName"></span>
+            </a>
+          </div>
+        </header>
+
+        <div class="profile-sec">
+          <h3>Account Setting</h3>
+          <hr />
+          <div class="top">
+            <div class="main-img">
+              <img src="../../images/user.png" alt="User Image" />
+            </div>
+          </div>
+
+          <form id="registerForm" class="form"></form>
+        </div>
+        <!-- profile-sec -->
+      </div>
+      <!-- sec-container -->
+    </div>
+    <!-- contatiner -->
+    <script>
+      const registerForm = document.getElementById("registerForm");
+      const log_out_link = document.getElementById("log_out_link");
+      var currentUser = JSON.parse(localStorage.getItem("currentAccount"));
+      const Admins = JSON.parse(localStorage.getItem("Admin"));
+
+      (function getCurrentUser() {
+        const profileName = document.getElementById("profileName");
+        if (currentUser) {
+          profileName.innerHTML = `${currentUser.name}`;
+        } else {
+          window.location.assign("/");
+        }
+      })();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        registerForm.innerHTML = `
+              <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Full Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        class="form-input"
+                        value="${currentUser.name}"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">ID</label>
+                      <input
+                        type="number"
+                        id="registerID"
+                        class="form-input"
+                        value="${currentUser.id}"
+                        disabled
+                        style="color: #8A8A8A"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label class="form-label">Your Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-input"
+                        value="${currentUser.email}"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Your Password</label>
+                      <input
+                        type="password"
+                        id="password"
+                        class="form-input"
+                        value="${currentUser.password}"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Bio</label>
+                    <textarea
+                      id="bio"
+                      class="form-textarea"
+                      placeholder="Tell us about yourself"
+                      rows="4"
+                      style="resize: none"
+                    ></textarea>
+                  </div>
+                  <button type="submit">Update profile</button>
+          `;
+      });
+
+      registerForm.addEventListener("submit", (e) => {
+        currentUser = {
+          ...currentUser,
+          name: e.target.elements.name.value,
+          email: e.target.elements.email.value,
+          password: e.target.elements.password.value,
+        };
+        localStorage.setItem("currentAccount", JSON.stringify(currentUser));
+        const updatedUsers = Admins.filter(
+          (admin) => admin.id !== currentUser.id
+        );
+        updatedUsers.push(currentUser);
+        localStorage.setItem("Admin", JSON.stringify(updatedUsers));
+        getCurrentUser();
+      });
+
+      // logout
+      log_out_link.addEventListener("click", () => {
+        localStorage.removeItem("currentAccount");
+        setTimeout(() => {
+          window.location.assign("/");
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

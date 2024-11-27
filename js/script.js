@@ -34,11 +34,11 @@ function login() {
     console.log(userWithRole);
 
     if (userWithRole.role === "Admin") {
-      window.location.assign(`./Pages/HomeAdmin.html`);
-      localStorage.setItem("currentAccount", JSON.stringify(registeredUser.id));
+      window.location.assign(`./Pages/Admin/HomeAdmin.html`);
+      localStorage.setItem("currentAccount", JSON.stringify(registeredUser));
     } else if (userWithRole.role === "User") {
       window.location.assign(`./Pages/HomeUser.html`);
-      localStorage.setItem("currentAccount", JSON.stringify(registeredUser.id));
+      localStorage.setItem("currentAccount", JSON.stringify(registeredUser));
     }
   } else {
     alert("Invalid email or password. Please try again.");

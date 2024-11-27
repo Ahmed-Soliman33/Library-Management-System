@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../../images/logo.png" />
+    <link rel="stylesheet" href="../../css/all.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/BookPreview.css" />
+    <link rel="stylesheet" href="../../css/ManageBooks.css" />
+    <title>Manage Books</title>
+  </head>
+  <body>
+    <header>
+      <div></div>
+      <div class="user-content">
+        <div class="user-div">Admin</div>
+        <a href="./ProfileAdmin.html" style=" text-decoration: none; gap: 10px;"   class="profile">
+          <img src="../../images/user.png" alt="User Image" />
+          <span style="  white-space: nowrap;" id="profileName"></span>
+        </a>
+      </div>
+    </header>   
+    <div class="all-content">
+        
+        <div class=" all-content">
+          <div style="width: 250px" class="sidebar">
+                <a href="./HomeAdmin.html" class="logo"
+                  ><img width="100px" src="../../images/logo.png" alt="logo"
+                /></a>
+                <nav class="menu">
+                  <ul>
+                    <li>
+                      <a  href="./HomeAdmin.html"
+                        ><i class="fa-solid fa-house"></i>Home</a
+                      >
+                    </li>
+                    <li>
+                      <a href="./ManageUsers.html"
+                        ><i class="fa-solid fa-user-group"></i>Manage Users</a
+                      >
+                    </li>
+                    <li>
+                      <a style="color: #4d4d4d" href="./ManageBooks.html" class="shelf-svg">
+                        <i class="fa-solid fa-book"></i>
+                        Manage Books</a
+                      >
+                    </li>
+                    <li>
+                      <a href="./ProfileAdmin.html"
+                        ><i class="fa-regular fa-user"></i>Profile</a
+                      >
+                    </li>
+                    <li>
+                      <a id="log_out_link" style="cursor: pointer"
+                        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+                        >Logout</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <!-- sidebar -->
+
+
+    <div class="form-section">
+      <h2>Fill Book Details</h2>
+      <form id="book-form">
+        <label for="book-title">Book Title</label>
+        <input
+          type="text"
+          id="book-title"
+          name="title"
+          placeholder="Enter book title"
+          required
+        />
+
+        <label for="category">Category</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          placeholder="Enter category"
+          required
+        />
+
+        <label for="author-date">Author & Year</label>
+        <input
+          type="text"
+          id="author-date"
+          name="author_date"
+          placeholder="Author, Year (e.g., Steve Krug, 2000)"
+          required
+        />
+
+        <label for="img-name">Book Image Name</label>
+        <input
+          type="text"
+          id="img-name"
+          name="imgUrl"
+          placeholder="Enter image name in Images folder (e.g., book1.jpeg)"
+          required
+        />
+
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Enter book description"
+          required
+        ></textarea>
+
+        <label for="about-author">About Author</label>
+        <textarea
+          id="about-author"
+          name="about_author"
+          placeholder="Enter information about the author"
+          required
+        ></textarea>
+
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+</div>
+
+    <script> 
+      const log_out_link = document.getElementById("log_out_link");
+      (function getCurrentUser() {
+      const currentUser = JSON.parse(localStorage.getItem("currentAccount"));
+      const profileName = document.getElementById("profileName");
+      if (!currentUser) {
+        window.location.assign("/");
+      } else {
+        profileName.innerHTML = `${currentUser.name}`;
+      }
+    })();
+      document.getElementById("book-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // جلب البيانات الحالية من Local Storage
+        const booksData = JSON.parse(localStorage.getItem("data")) || [];
+
+        // توليد id تلقائي بناءً على أعلى id موجود
+        const newId =
+          booksData.length > 0
+            ? Math.max(...booksData.map((book) => book.id)) + 1
+            : 1;
+
+        // إنشاء كائن الكتاب الجديد
+        const bookData = {
+          id: newId,
+          title: document.getElementById("book-title").value,
+          category: document.getElementById("category").value,
+          author_date: document.getElementById("author-date").value,
+          imgUrl: `../../images/${document.getElementById("img-name").value}`, 
+          description: document.getElementById("description").value,
+          about_author: document.getElementById("about-author").value,
+          borrowers: [],
+          rate: 4.5,
+        };
+
+        // حفظ البيانات في Local Storage
+        booksData.push(bookData);
+        localStorage.setItem("data", JSON.stringify(booksData));
+
+        alert("Book added successfully!");
+        document.getElementById("book-form").reset();
+        console.log("Book Data:", bookData);
+      });
+
+      log_out_link.addEventListener("click", () => {
+    localStorage.removeItem("currentAccount");
+    setTimeout(() => {
+      window.location.assign("/");
+    }, 1000);
+  });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Admin</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="../../images/logo.png" />
+        <link rel="stylesheet" href="../../css/all.css" />
+        <link rel="stylesheet" href="../../css/style.css" />
+        <link rel="stylesheet" href="../../css/HomeUser.css" />
+        <title>Home</title>
+      </head>
+      <body>
+        <div class="container">
+          <div style="width: 280px" class="sidebar">
+            <a href="./HomeAdmin.html" class="logo"
+              ><img width="100px" src="../../images/logo.png" alt="logo"
+            /></a>
+            <nav class="menu">
+              <ul>
+                <li>
+                  <a style="color: #4d4d4d" href="./HomeAdmin.html"
+                    ><i class="fa-solid fa-house"></i>Home</a
+                  >
+                </li>
+                <li>
+                  <a href="./ManageUsers.html"
+                    ><i class="fa-solid fa-user-group"></i>Manage Users</a
+                  >
+                </li>
+                <li>
+                  <a href="./ManageBooks.html" class="shelf-svg">
+                    <i class="fa-solid fa-book"></i>
+                    Manage Books</a
+                  >
+                </li>
+                <li>
+                  <a href="./ProfileAdmin.html"
+                    ><i class="fa-regular fa-user"></i>Profile</a
+                  >
+                </li>
+                <li>
+                  <a id="log_out_link" style="cursor: pointer"
+                    ><i class="fa-solid fa-arrow-right-from-bracket"></i
+                    >Logout</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <!-- sidebar -->
+
+          <div class="content">
+            <header>
+              <div class="header-search-box">
+                <input id="header-search" type="text" placeholder="Search" />
+                <label for="header-search"
+                  ><i class="fa-solid fa-magnifying-glass"></i
+                ></label>
+              </div>
+              <div class="user-content">
+                <div class="user-div">Admin</div>
+                <a href="./ProfileAdmin.html" id="profile" class="profile">
+                  <img src="../../images/user.png" alt="User Image" />
+                  <span style="white-space: nowrap" id="profileName"></span>
+                </a>
+              </div>
+            </header>
+            <div class="content-title">
+              <h2>Good Morning</h2>
+              <p>Recommended for You</p>
+            </div>
+            <!-- content-title -->
+            <div class="content-books" id="content-books"></div>
+            <!-- content-books -->
+          </div>
+          <!-- content -->
+        </div>
+        <!-- contatiner -->
+
+        <script>
+          const booksContainer = document.getElementById("content-books");
+          const logOutLink = document.getElementById("log_out_link");
+          const headerSearch = document.getElementById("header-search");
+          const currentUser = JSON.parse(
+            localStorage.getItem("currentAccount")
+          );
+          const data = JSON.parse(localStorage.getItem("data"));
+
+          getCurrentUser();
+          // check if user is logged in
+
+          // get current user
+          function getCurrentUser() {
+            if (!currentUser) {
+              window.location.assign("/");
+            }
+            const profileName = document.querySelector(".profile span");
+            profileName.innerHTML = `${currentUser.name}`;
+          }
+          // display all books
+          if (booksContainer) {
+            booksContainer.innerHTML = `
+            ${
+              data && data.length > 0
+                ? data
+                    .map(
+                      (book) => `
+                <a href="./BookAdmin.html?id=${book.id}" class="book-item">
+                  <img src="../${book.imgUrl}" alt="" />
+                  <div class="book-info">
+                    <h3>${book.title}</h3>
+                    <h4>${book.author_date}</h4>
+                    <p>${book.rate}<span>/5</span></p>
+                  </div>
+                </a>`
+                    )
+                    .join("")
+                : `<h1 class="not-found">No books found</h1>`
+            }
+          `;
+          }
+
+          logOutLink.addEventListener("click", () => {
+            localStorage.removeItem("currentAccount");
+            setTimeout(() => {
+              window.location.assign("/");
+            }, 1000);
+          });
+
+          headerSearch?.addEventListener("change", (event) => {
+            const value = event.target.value;
+
+            const newData = data.filter((book) =>
+              book.title.toLowerCase().includes(value.toLowerCase())
+            );
+            if (booksContainer) {
+              booksContainer.innerHTML = `
+            ${
+              newData && newData.length > 0
+                ? newData
+                    .map(
+                      (book) => `
+                <a href="../Pages/Admin/BookAdmin.html?id=${book.id}" class="book-item">
+                  <img src="../${book.imgUrl}" alt="" />
+                  <div class="book-info">
+                    <h3>${book.title}</h3>
+                    <h4>${book.author_date}</h4>
+                    <p>${book.rate}<span>/5</span></p>
+                  </div>
+                </a>`
+                    )
+                    .join("")
+                : `<h1 class="not-found">No books found</h1>`
+            }
+          `;
+            } else {
+              // console.error("booksContainer not found in the DOM!");
+            }
+          });
+        </script>
+      </body>
+    </html>
+  </body>
+</html>

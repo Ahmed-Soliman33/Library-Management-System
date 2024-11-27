@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../../images/logo.png" />
+    <link rel="stylesheet" href="../../css/all.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/ManageUsers.css" />
+    <title>Favourite</title>
+  </head>
+  <body>
+    <header>
+      <div class="user-content">
+        <div class="user-div">Admin</div>
+        <a href="./ProfileAdmin.html" id="profile" class="profile">
+          <img src="../../images/user.png" alt="User Image" />
+          <span style="white-space: nowrap" id="profileName"></span>
+        </a>
+      </div>
+    </header>
+    <div class="all-content">
+      <div style="width: 250px" class="sidebar">
+        <a href="./HomeAdmin.html" class="logo"
+          ><img width="100px" src="../../images/logo.png" alt="logo"
+        /></a>
+        <nav class="menu">
+          <ul>
+            <li>
+              <a href="./HomeAdmin.html"
+                ><i class="fa-solid fa-house"></i>Home</a
+              >
+            </li>
+            <li>
+              <a style="color: #4d4d4d" href="./ManageUsers.html"
+                ><i class="fa-solid fa-user-group"></i>Manage Users</a
+              >
+            </li>
+            <li>
+              <a href="./ManageBooks.html" class="shelf-svg">
+                <i class="fa-solid fa-book"></i>
+                Manage Books</a
+              >
+            </li>
+            <li>
+              <a href="./ProfileAdmin.html"
+                ><i class="fa-regular fa-user"></i>Profile</a
+              >
+            </li>
+            <li>
+              <a id="log_out_link" style="cursor: pointer"
+                ><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <!-- sidebar -->
+      <div class="sec1">
+        <div class="text1">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span
+            ><a style="cursor: pointer" onclick="history.back()">
+              Back
+            </a></span
+          >
+        </div>
+
+        <div class="title-buttons">
+          <p class="title1">Manage Users</p>
+          <div class="buttons">
+            <button id="addUserBtn">Add User</button>
+          </div>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="userModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="margin: auto">Add User</h2>
+            <form id="userForm">
+              <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+
+              <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+
+              <div>
+                <label for="role">Role:</label>
+                <select id="role" name="role">
+                  <option value="Admin">Admin</option>
+                  <option value="User">User</option>
+                </select>
+              </div>
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="userRow" class="user-row"></div>
+      </div>
+    </div>
+    <script>
+      const addUserBtn = document.getElementById("addUserBtn");
+      const modal = document.getElementById("userModal");
+      const closeBtn = document.querySelector(".close");
+      const userForm = document.getElementById("userForm");
+      const profileName = document.getElementById("profileName");
+      const userRow = document.getElementById("userRow");
+      const log_out_link = document.getElementById("log_out_link");
+
+      (function getCurrentUser() {
+        const currentUser = JSON.parse(localStorage.getItem("currentAccount"));
+        if (currentUser) {
+          profileName.innerHTML = `${currentUser.name}`;
+        } else {
+          window.location.assign("/");
+        }
+      })();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const users = JSON.parse(localStorage.getItem("User"));
+        userRow.innerHTML = `
+        ${
+          users.length != 0
+            ? users
+                .map(
+                  (user) => `
+          <div class="user-card">
+            <img src="../../images/user.png" alt="User Image" class="user-image" />
+            <div class="user-info">
+              <div>
+                <h2 style="font-size: 20px"><span style="font-weight: 300; font-size: 18px; color: #333">Name:</span> ${user.name}</h2>
+                <p style="font-size: 18px"><span style="font-weight: 300; font-size: 16px; color: #333">Email:</span> ${user.email}</p>
+                <small style="font-size: 14px" >ID: ${user.id}</small>
+              </div>
+              <button onclick="deleteUser('${user.id}')" >Delete User</button>
+            </div>
+          </div>
+        `
+                )
+                .join("")
+            : ` <h1 style="text-align: center; margin-top: 80px; color: #554">No User found</h1>`
+        }
+        `;
+      });
+      // delete user
+      function deleteUser(id) {
+        const users = JSON.parse(localStorage.getItem("User"));
+        console.log({ users });
+        const updatedUsers = users?.filter((user) => user.id !== id);
+        localStorage.setItem("User", JSON.stringify(updatedUsers));
+        location.reload();
+      }
+
+      log_out_link.addEventListener("click", () => {
+        localStorage.removeItem("currentAccount");
+        setTimeout(() => {
+          window.location.assign("/");
+        }, 1000);
+      });
+
+      // Open modal
+      addUserBtn.addEventListener("click", () => {
+        modal.style.display = "block";
+      });
+      // Close modal
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+      window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      // Handle form submission
+      userForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Get user data
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value;
+        const users = JSON.parse(localStorage.getItem(role));
+
+        // Create user object
+        const user = {
+          id: Date.now().toString(),
+          name: name,
+          email: email,
+          password: password,
+          role: role,
+          data: [],
+          favouriteBooks: [],
+        };
+
+        const existingUser = users.some((user) => user.email === email);
+
+        if (existingUser) {
+          // Check if user already exists
+          alert("User already exists!");
+        } else {
+          users.push(user);
+          localStorage.setItem(role, JSON.stringify(users));
+          modal.style.display = "none";
+        }
+        modal.style.display = "none";
+        userForm.reset();
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

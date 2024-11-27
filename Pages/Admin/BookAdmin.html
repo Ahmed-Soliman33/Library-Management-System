@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../../images/logo.png" />
+    <link rel="stylesheet" href="../../css/all.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/BookPreview.css" />
+    <title>Shelf</title>
+  </head>
+  <body>
+    <header>
+      <div></div>
+      <div class="user-content">
+        <div class="user-div">Admin</div>
+        <a  href="./ProfileAdmin.html" style=" text-decoration: none; gap: 10px;"   class="profile">
+          <img src="../../images/user.png" alt="User Image" />
+          <span style="  white-space: nowrap;" id="profileName"></span>
+        </a>
+      </div>
+    </header>
+    <div class="all-content">
+        
+        <div class=" all-content">
+          <div style="width: 250px" class="sidebar">
+                <a href="./HomeAdmin.html" class="logo"
+                  ><img width="100px" src="../../images/logo.png" alt="logo"
+                /></a>
+                <nav class="menu">
+                  <ul>
+                    <li>
+                      <a style="color: #4d4d4d" href="./HomeAdmin.html"
+                        ><i class="fa-solid fa-house"></i>Home</a
+                      >
+                    </li>
+                    <li>
+                      <a href="./ManageUsers.html"
+                        ><i class="fa-solid fa-user-group"></i>Manage Users</a
+                      >
+                    </li>
+                    <li>
+                      <a href="./ManageBooks.html" class="shelf-svg">
+                        <i class="fa-solid fa-book"></i>
+                        Manage Books</a
+                      >
+                    </li>
+                    <li>
+                      <a href="./ProfileAdmin.html"
+                        ><i class="fa-regular fa-user"></i>Profile</a
+                      >
+                    </li>
+                    <li>
+                      <a id="log_out_link" style="cursor: pointer"
+                        ><i class="fa-solid fa-arrow-right-from-bracket"></i
+                        >Logout</a
+                      >
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <!-- sidebar -->
+
+
+<div class="sec1">
+        <div class="card-contaiener">
+          <div class="text1">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span
+              ><a style="cursor: pointer" onclick="history.back()">
+                Back to results</a
+              >
+            </span>
+          </div>
+          <div style="height: auto; padding: 10px 0px;" id="cardImg" class="card-img">
+          </div>
+        </div>
+        <div id="bookInfo" class="book-info"></div>
+        <div id="authorInfo" class="author-info"></div>
+      </div>
+</div>
+
+    <script type="module" src="../../js/BookAdmin.js"></script>
+  </body>
+</html>
